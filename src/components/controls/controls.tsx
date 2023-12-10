@@ -6,18 +6,24 @@ import style from './style.module.scss';
 export default function Controls({ event, dateTime }: ControlsProps) {
 	const audioRef = useRef<HTMLAudioElement>(null);
 
-	const _play = () => {
+	const play = () => {
 		const current = audioRef.current;
 		if(!current) return;
 		current.play();
 	};
 
-	const _stop = () => {
+	const stop = () => {
 		const current = audioRef.current;
 		if(!current) return;
 		current.pause();
 		current.currentTime = 0;
 	};
+
+	// TODO
+	event;
+	dateTime;
+	play;
+	stop;
 
 	return (
 		<div class={style.controls}>

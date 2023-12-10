@@ -1,16 +1,13 @@
 import classnames from "classnames";
 import { DateTime } from "luxon";
-import { useState } from "preact/hooks";
 import { WildernessFlashEvent } from "../../model/events";
 import Toggle from "../toggle/toggle";
 import style from "./style.module.scss";
 
-export default function Reminder({ event, dateTime, enabled = true, toggle, isCurrent, isNext }: ReminderProps) {
-	const [isEnabled, setIsEnabled] = useState(enabled);
-
+export default function Reminder({ event, dateTime, enabled, toggle, isCurrent, isNext }: ReminderProps) {
 	return (
 		<div class={classnames(style.reminder, {
-			[style.disabled]: !isEnabled,
+			[style.disabled]: !enabled,
 			[style.current]: isCurrent,
 			[style.next]: isNext,
 		})}>
@@ -26,7 +23,7 @@ export default function Reminder({ event, dateTime, enabled = true, toggle, isCu
 			</div>
 			<div class={style.spacer} />
 			<div>
-				<Toggle enabled={isEnabled} toggle={setIsEnabled} />
+				<Toggle enabled={enabled} toggle={toggle} />
 			</div>
 		</div>
 	);
@@ -35,7 +32,7 @@ export default function Reminder({ event, dateTime, enabled = true, toggle, isCu
 interface ReminderProps {
 	event: WildernessFlashEvent;
 	dateTime: DateTime;
-	enabled?: boolean;
+	enabled: boolean;
 	toggle(enabled: boolean): void;
 	isCurrent?: boolean;
 	isNext?: boolean;

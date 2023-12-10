@@ -1,4 +1,5 @@
 import { render } from "preact";
-import { App } from "./app.tsx";
+import { App } from "./components/app/app.tsx";
+import "./style.scss";
 
 render(<App />, document.body);
